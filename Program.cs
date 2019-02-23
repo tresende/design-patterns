@@ -6,6 +6,14 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
+            Imposto iss = new ICMS(new ISS());
+            Orcamento orcamento = new Orcamento(500);
+            var valor = iss.Calcula(orcamento);
+            System.Console.WriteLine(valor);
+        }
+
+        static void TemplateMethod()
+        {
             CalculadorDeDescontos calculador = new CalculadorDeDescontos();
             Orcamento orcamento = new Orcamento(500);
             orcamento.AdicionaItem(new Item("Caneta", 250));
