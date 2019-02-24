@@ -6,6 +6,20 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
+            Orcamento orcamento = new Orcamento(500);
+            orcamento.AplicaDescontoExtra();
+            System.Console.WriteLine(orcamento.Valor);
+
+            orcamento.Aprova();
+            orcamento.AplicaDescontoExtra();
+            System.Console.WriteLine(orcamento.Valor);
+
+            orcamento.Finaliza();
+            System.Console.WriteLine(orcamento.Valor);
+        }
+
+        static void DecorationPattern()
+        {
             Imposto iss = new ICMS(new ISS());
             Orcamento orcamento = new Orcamento(500);
             var valor = iss.Calcula(orcamento);
