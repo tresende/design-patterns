@@ -1,10 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DesignPatterns
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            var criador = new NotaFiscalBuilder()
+                              .ParaEmpresa("Caelum")
+                              .ComCnpj("123.456.789/0001-10")
+                              .ComItem(new ItemDaNota("item 1", 100.0))
+                              .ComItem(new ItemDaNota("item 2", 200.0))
+                              .ComItem(new ItemDaNota("item 3", 300.0))
+                              .ComObservacoes("entregar nf pessoalmente")
+                              .NaDataAtual()
+                              .AdicionaAcao(new EnviadorDeEmail())
+                              .AdicionaAcao(new NotaFiscalDao())
+                              .AdicionaAcao(new EnviadorDeSms());
+            var nf = criador.Constroi();
+        }
+
+        static void Builder()
+        {
+            IList<ItemDaNota> itens = new List<ItemDaNota>();
+            double valorTotal = 0;
+            foreach (var item in itens)
+            {
+                valorTotal += item.Valor;
+            }
+            double impostos = valorTotal * 0.05;
+            NotaFiscal nf = new NotaFiscal("razao", "cnpj", DateTime.Now, valorTotal, impostos, itens, "obs");
+
+            NotaFiscal nf2 = new NotaFiscalBuilder()
+                              .ParaEmpresa("Caelum")
+                              .ComCnpj("123.456.789/0001-10")
+                              .ComItem(new ItemDaNota("item 1", 100.0))
+                              .ComItem(new ItemDaNota("item 2", 200.0))
+                              .ComItem(new ItemDaNota("item 3", 300.0))
+                              .ComObservacoes("entregar nf pessoalmente")
+                              .NaDataAtual()
+                              .Constroi();
+        }
+
+        static void State()
         {
             Orcamento orcamento = new Orcamento(500);
             orcamento.AplicaDescontoExtra();
