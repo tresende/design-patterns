@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DesignPatterns
+namespace DesignPatterns.Cap1
 {
     public class ConnectionFactory
     {

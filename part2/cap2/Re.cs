@@ -1,4 +1,4 @@
-namespace DesignPatterns
+namespace DesignPatterns.Cap2
 {
     public class Re : INota
     {
