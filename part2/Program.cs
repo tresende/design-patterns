@@ -1,17 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq.Expressions;
 using System.Data.SqlClient;
 using DesignPatterns.Cap1;
 using DesignPatterns.Cap2;
 using DesignPatterns.Cap3;
+using DesignPatterns.Cap4;
 
 namespace DesignPatterns
 {
     class Program
     {
         static void Main(string[] args)
-        { }
+        { 
+            // IExpressao esquerda = new Soma(new Numero(1), new Numero(10));
+            // IExpressao direita = new Subtracao(new Numero(20), new Numero(10));
+            // IExpressao soma = new Soma(esquerda, direita);
+            // System.Console.WriteLine(soma.Avalia());;
+
+            Expression soma = Expression.Add(Expression.Constant(10), Expression.Constant(100));
+            Func<int> interpreter = Expression.Lambda<Func<int>>(soma).Compile();
+            int resultado = interpreter();
+            System.Console.WriteLine(resultado);
+        }
+
         static void Memento(string[] args)
         {
             Historico historico = new Historico();
