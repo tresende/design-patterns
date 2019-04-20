@@ -7,6 +7,7 @@ using DesignPatterns.Cap1;
 using DesignPatterns.Cap2;
 using DesignPatterns.Cap3;
 using DesignPatterns.Cap4;
+using DesignPatterns.Cap5;
 
 namespace DesignPatterns
 {
@@ -14,15 +15,24 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         { 
-            // IExpressao esquerda = new Soma(new Numero(1), new Numero(10));
-            // IExpressao direita = new Subtracao(new Numero(20), new Numero(10));
-            // IExpressao soma = new Soma(esquerda, direita);
-            // System.Console.WriteLine(soma.Avalia());;
+            
+        }
 
+        static void VisitorPattern()
+        {
+            IExpressao esquerda = new Soma(new Numero(1), new Numero(10));
+            IExpressao direita = new Subtracao(new Numero(20), new Numero(10));
+            var conta = new Soma(esquerda, direita);
+            System.Console.WriteLine(conta.Avalia());
+            ImpressoraVisitor impressora = new ImpressoraVisitor();
+            conta.Aceita(impressora);
+        }
+
+        static void InterpreterPattern(string[] args){
             Expression soma = Expression.Add(Expression.Constant(10), Expression.Constant(100));
             Func<int> interpreter = Expression.Lambda<Func<int>>(soma).Compile();
             int resultado = interpreter();
-            System.Console.WriteLine(resultado);
+            
         }
 
         static void Memento(string[] args)
