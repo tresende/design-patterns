@@ -8,14 +8,23 @@ using DesignPatterns.Cap2;
 using DesignPatterns.Cap3;
 using DesignPatterns.Cap4;
 using DesignPatterns.Cap5;
+using DesignPatterns.Cap6;
 
 namespace DesignPatterns
 {
     class Program
     {
         static void Main(string[] args)
-        { 
-            
+        {
+
+        }
+
+        static void BridgePattern()
+        {
+            IMensagem mensagem = new MensagemCliente("Thiago");
+            IEnviador enviador = new EnviaPorEmail();
+            mensagem.Enviador = enviador;
+            mensagem.Envia();
         }
 
         static void VisitorPattern()
@@ -28,11 +37,11 @@ namespace DesignPatterns
             conta.Aceita(impressora);
         }
 
-        static void InterpreterPattern(string[] args){
+        static void InterpreterPattern(string[] args)
+        {
             Expression soma = Expression.Add(Expression.Constant(10), Expression.Constant(100));
             Func<int> interpreter = Expression.Lambda<Func<int>>(soma).Compile();
             int resultado = interpreter();
-            
         }
 
         static void Memento(string[] args)
