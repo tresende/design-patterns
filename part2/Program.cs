@@ -9,6 +9,7 @@ using DesignPatterns.Cap3;
 using DesignPatterns.Cap4;
 using DesignPatterns.Cap5;
 using DesignPatterns.Cap6;
+using DesignPatterns.Cap7;
 
 namespace DesignPatterns
 {
@@ -16,8 +17,19 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-
+            CommandPattern();
         }
+        static void CommandPattern()
+        {
+            FilaDeTrabalho fila = new FilaDeTrabalho();
+            Pedido pedido1 = new Pedido("Mauricio", 100);
+            Pedido pedido2 = new Pedido("Marcelo", 200);
+            fila.Adicona(new PagaPedido(pedido1));
+            fila.Adicona(new PagaPedido(pedido2));
+            fila.Adicona(new FinalizaPedido(pedido1));
+            fila.Processa();
+        }
+
 
         static void BridgePattern()
         {
