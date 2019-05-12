@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq.Expressions;
-using System.Data.SqlClient;
 using DesignPatterns.Cap1;
 using DesignPatterns.Cap2;
 using DesignPatterns.Cap3;
@@ -10,6 +9,7 @@ using DesignPatterns.Cap4;
 using DesignPatterns.Cap5;
 using DesignPatterns.Cap6;
 using DesignPatterns.Cap7;
+using DesignPatterns.Cap8;
 
 namespace DesignPatterns
 {
@@ -17,8 +17,19 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            CommandPattern();
+            AdapterPattern();
         }
+
+        static void AdapterPattern()
+        {
+            Cliente cliente = new Cliente();
+            cliente.Nome = "Thiago";
+            cliente.Endereco = "Rua XPTO";
+            cliente.DataNascimento = new DateTime(1992, 3, 9);
+            string xml = new GeradorDeXML().GeraXML(cliente);
+            System.Console.WriteLine(xml);
+        }
+
         static void CommandPattern()
         {
             FilaDeTrabalho fila = new FilaDeTrabalho();
@@ -29,7 +40,6 @@ namespace DesignPatterns
             fila.Adicona(new FinalizaPedido(pedido1));
             fila.Processa();
         }
-
 
         static void BridgePattern()
         {
