@@ -10,6 +10,7 @@ using DesignPatterns.Cap5;
 using DesignPatterns.Cap6;
 using DesignPatterns.Cap7;
 using DesignPatterns.Cap8;
+using DesignPatterns.Cap9;
 
 namespace DesignPatterns
 {
@@ -17,12 +18,21 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            AdapterPattern();
+            FacadePattern();
+        }
+
+        static void FacadePattern()
+        {
+            var cpf = "123";
+            var facade = new EmpresaFacadeSingleton().Instancia;
+            var cliente = facade.BuscaCliente(cpf);
+            var fatura = facade.CriaFatura(cliente, 23);
+            facade.GeraCobranca(TipoCobranca.Boleto, fatura);
         }
 
         static void AdapterPattern()
         {
-            Cliente cliente = new Cliente();
+            var cliente = new DesignPatterns.Cap8.Cliente();
             cliente.Nome = "Thiago";
             cliente.Endereco = "Rua XPTO";
             cliente.DataNascimento = new DateTime(1992, 3, 9);
